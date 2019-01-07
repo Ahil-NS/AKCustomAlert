@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         
         
         let alertView = AkAlertView()
-        alertView.showAlert(in: self.view, with: "Alert Title Here", "Alert Message here")
+        alertView.showAlert(in: self.view, with: "Alert Title Here", "Alert Message here", .multi)
     }
 
 

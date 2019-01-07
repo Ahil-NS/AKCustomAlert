@@ -113,13 +113,39 @@ class AkAlertView: UIView {
         
     }
     
-    func showAlert(in targetView:UIView, with title:String, _ alertMessage:String){
+    func showAlert(in targetView:UIView, with title:String, _ alertMessage:String, _ alertType:AkAlertType){
+        
+      
+        titleLabel.text = title.capitalized
+        messageLabel.text = alertMessage
         
         targetView.addSubview(self)
         self.frame = targetView.bounds
+        self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         
-        titleLabel.text = title.capitalized
-        messageLabel.text = alertMessage
+        
+        self.alpha = 0
+        
+       
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            self.alpha = 1
+            self.transform = .identity
+            
+        }, completion: nil)
+        if(alertType == .single){
+            
+        }
+
+        //Add ok or OK and Cancel Button to Alert View
+        cancelButton.isHidden = alertType == .single ? true : false
+        
+        
+        
+    }
+    
+    enum AkAlertType {
+        case single
+        case multi
     }
     
     
