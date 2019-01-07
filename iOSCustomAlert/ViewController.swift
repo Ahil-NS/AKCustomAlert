@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        let alertView = AkAlertView()
+        alertView.showAlert(in: self.view, with: "Alert Title Here", "Alert Message here")
     }
 
 

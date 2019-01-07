@@ -12,6 +12,7 @@
 		FABE1DA521E31E960080B96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABE1DA321E31E960080B96E /* Main.storyboard */; };
 		FABE1DA721E31E980080B96E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABE1DA621E31E980080B96E /* Assets.xcassets */; };
 		FABE1DAA21E31E980080B96E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABE1DA821E31E980080B96E /* LaunchScreen.storyboard */; };
+		FABE1DB421E324620080B96E /* AkAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE1DB321E324620080B96E /* AkAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		FABE1DA621E31E980080B96E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FABE1DA921E31E980080B96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FABE1DAB21E31E980080B96E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABE1DB321E324620080B96E /* AkAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		FABE1D9E21E31E960080B96E /* iOSCustomAlert */ = {
 			isa = PBXGroup;
 			children = (
+				FABE1DB221E324310080B96E /* AlertView */,
 				FABE1D9F21E31E960080B96E /* AppDelegate.swift */,
 				FABE1DA121E31E960080B96E /* ViewController.swift */,
 				FABE1DA321E31E960080B96E /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				FABE1DAB21E31E980080B96E /* Info.plist */,
 			);
 			path = iOSCustomAlert;
+			sourceTree = "<group>";
+		};
+		FABE1DB221E324310080B96E /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				FABE1DB321E324620080B96E /* AkAlertView.swift */,
+			);
+			path = AlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,7 +103,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = MacBook;
+				ORGANIZATIONNAME = Ahil;
 				TargetAttributes = {
 					FABE1D9B21E31E960080B96E = {
 						CreatedOnToolsVersion = 10.1;
@@ -135,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE1DB421E324620080B96E /* AkAlertView.swift in Sources */,
 				FABE1DA221E31E960080B96E /* ViewController.swift in Sources */,
 				FABE1DA021E31E960080B96E /* AppDelegate.swift in Sources */,
 			);
