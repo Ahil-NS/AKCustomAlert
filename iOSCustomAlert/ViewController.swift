@@ -15,13 +15,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        let alertView = AkAlertView()
-        alertView.showAlert(in: self.view, with: "Ahil", "Mesdd", .multi) { (tappedButton) in
-            guard tappedButton == .ok else{ return}
-            print("yes bro ok clicked")
-            
-        }
-//        alertView.showAlert(in: self.view, with: "Alert Title Here", "Alert Message here", .multi)
+//        let alertView = AkAlertView()
+//        alertView.showAlert(in: self.view, with: "Ahil", "Mesdd", .multi) { (tappedButton) in
+//            guard tappedButton == .ok else{ return}
+//            print("yes bro ok clicked")
+//
+//        }
+
+        let alert = AkTextFieldAlert()
+        alert.frame = self.view.frame
+        view.addSubview(alert)
+        
+        
+        
     }
 
 
