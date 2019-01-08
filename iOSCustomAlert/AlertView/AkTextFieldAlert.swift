@@ -45,6 +45,14 @@ class AkTextFieldAlert: UIView {
         return lbl
     }()
     
+    private lazy var closeButton:UIButton = {
+        let btn = UIButton()
+        btn.setImage(#imageLiteral(resourceName: "close_btn"), for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,7 +89,16 @@ class AkTextFieldAlert: UIView {
         
         
         self.addSubview(containerView)
+        
+    
+     
         containerView.addSubview(mainStack)
+        
+        containerView.addSubview(closeButton)
+        NSLayoutConstraint.activate([closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -4),
+                                     closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4),
+                                     closeButton.heightAnchor.constraint(equalToConstant: 25),
+                                     closeButton.widthAnchor.constraint(equalToConstant: 25)])
         
         
         NSLayoutConstraint.activate([containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -102,5 +119,21 @@ class AkTextFieldAlert: UIView {
             inputTextField.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.8),
             actionButton.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9)
             ])
+    }
+    
+    func showAlert(in parentView:UIView, addTitle title:String,addMsg message:String){
+        
+        
+                self.frame = parentView.frame
+        //parentView.frame = self.frame
+                parentView.addSubview(self)
+        
+        
+//
+//        parentView.addSubview(self)
+//        parentView.frame = self.frame
+        
+        titleLabel.text = title
+        inputTextField.text = message
     }
 }

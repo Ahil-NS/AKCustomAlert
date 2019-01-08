@@ -23,8 +23,9 @@ class ViewController: UIViewController {
 //        }
 
         let alert = AkTextFieldAlert()
-        alert.frame = self.view.frame
-        view.addSubview(alert)
+        alert.showAlert(in: self.view, addTitle: "TTTT", addMsg: "MMM")
+//        alert.frame = self.view.frame
+//        view.addSubview(alert)
         
         
         
