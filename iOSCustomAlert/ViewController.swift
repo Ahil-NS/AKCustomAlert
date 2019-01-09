@@ -12,21 +12,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         
 //        let alertView = AkAlertView()
-//        alertView.showAlert(in: self.view, with: "Ahil", "Mesdd", .multi) { (tappedButton) in
+//        alertView.showAlert(in: self.view, with: "Enter Title Her", "Enter Message Here", .multi) { (tappedButton) in
 //            guard tappedButton == .ok else{ return}
 //            print("yes bro ok clicked")
 //
 //        }
 
-        let alert = AkTextFieldAlert()
-        alert.showAlert(in: self.view, addTitle: "TTTT", addMsg: "MMM")
-//        alert.frame = self.view.frame
-//        view.addSubview(alert)
-        
+        let alert = AkTextFieldAlert(frame: self.view.bounds)
+        alert.titleText = "Enter Title Here"
+        alert.actionButtonTitleText = "SignIn"
+        alert.textFieldPlaceHolderText = "Enter User Name"
+        alert.show(in: self.view)
         
         
     }
