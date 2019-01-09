@@ -111,11 +111,21 @@ class AkTextFieldAlert: UIView {
         
         parentView.addSubview(self)
         
-        NSLayoutConstraint.activate([self.topAnchor.constraint(equalTo: parentView.topAnchor),
-                                     self.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
-                                     self.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-                                     self.trailingAnchor.constraint(equalTo: parentView.trailingAnchor)
-            ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([self.topAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.topAnchor),
+                                         self.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+                                         self.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                                         self.trailingAnchor.constraint(equalTo: parentView.trailingAnchor)
+                ])
+        } else {
+            // Fallback on earlier versions
+            NSLayoutConstraint.activate([self.topAnchor.constraint(equalTo: parentView.topAnchor),
+                                         self.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                                         self.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                                         self.trailingAnchor.constraint(equalTo: parentView.trailingAnchor)
+                ])
+            
+        }
         
         let containerView = UIView()
         containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -180,8 +190,7 @@ class AkTextFieldAlert: UIView {
             duration = 0.3
             alphaTo = 1
         case false:
-            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            transformTo = .identity
+            transformTo = CGAffineTransform(scaleX: 1.1, y: 1.1)
             duration = 0.2
             alphaTo = 0
         }
