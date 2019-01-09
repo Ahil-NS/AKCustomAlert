@@ -29,7 +29,6 @@ class AkAlertView: UIView {
         lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
-        
     }()
     
     private lazy var okButton:UIButton = {
@@ -37,7 +36,6 @@ class AkAlertView: UIView {
         btn.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         btn.setTitle("OK", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        
         return btn
     }()
     
@@ -46,16 +44,13 @@ class AkAlertView: UIView {
         btn.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         btn.setTitle("CANCEL", for: .normal)
         return btn
-        
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addCustomLayoutSubViews()
         self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        
     }
-    
     
     //Check this
     @objc private func okButtonPressed(_ sender:UIButton){
@@ -72,14 +67,9 @@ class AkAlertView: UIView {
         
     }
     
-    
-    
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     private func addCustomLayoutSubViews(){
         
@@ -150,26 +140,23 @@ class AkAlertView: UIView {
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             self.alpha = 1
             self.transform = .identity
-
+            
         }, completion: nil)
         
         //Add ok or OK and Cancel Button to Alert View
         cancelButton.isHidden = alertType == .single ? true : false
         
         
-        
         guard let _buttonAction = buttonAction else{
             
-            fatalError("fatal error")
+            //fatalError("fatal error")
             if alertType == .single || alertType == .multi {
                 okButton.addTarget(self, action: #selector(okButtonPressed(_:)), for: .touchUpInside)
             }
             if alertType == .multi{
                 cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
             }
-            
             return
-            
         }
         
         if(alertType == .single || alertType == .multi){
@@ -187,7 +174,6 @@ class AkAlertView: UIView {
                 })
             }
         }
-        
     }
     
     func hide(_ completed:@escaping(Bool)->Void){

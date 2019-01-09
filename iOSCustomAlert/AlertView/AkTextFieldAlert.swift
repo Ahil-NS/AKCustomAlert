@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AkAlertTextFieldDelegate{
+    func userTappedAcceptButton(with textFieldText:String?)
+}
+
 class AkTextFieldAlert: UIView {
     
     var textFieldPlaceHolderText:String = "Place holder"{
@@ -52,6 +56,8 @@ class AkTextFieldAlert: UIView {
         return tf
     }()
     
+    var delegate: AkAlertTextFieldDelegate?
+    
     private lazy var actionButton:UIButton = {
         let btn = UIButton()
         btn.setTitle(actionButtonTitleText, for: .normal)
@@ -60,15 +66,26 @@ class AkTextFieldAlert: UIView {
         btn.backgroundColor = #colorLiteral(red: 0.8010929823, green: 0.1427796483, blue: 0.08222163469, alpha: 1)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        btn.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
         return btn
     }()
+    
+    @objc func acceptButtonPressed(){
+        delegate?.userTappedAcceptButton(with: inputTextField.text)
+        remove()
+    }
     
     private lazy var closeButton:UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "close_btn"), for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(remove), for: .touchUpInside)
         return btn
     }()
+    
+    @objc func closeButtonPressed(){
+        animateAlert(toShow: false)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,9 +98,13 @@ class AkTextFieldAlert: UIView {
     
     func show(in view:UIView){
         showAlert(in: view)
-        animateAlert()
+        animateAlert(toShow: true)
     }
     
+    @objc private func remove(){
+        self.endEditing(true)
+        animateAlert(toShow: false)
+    }
     func showAlert(in parentView:UIView){
         
         self.alpha = 0
@@ -147,21 +168,30 @@ class AkTextFieldAlert: UIView {
         
     }
     
-    func animateAlert(){
-        var transformTo:CGAffineTransform
-        var duration:Double
+    func animateAlert(toShow isShow:Bool){
+        var transformTo:CGAffineTransform!
+        var duration:Double!
         var alphaTo:CGFloat!
         
-        self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        transformTo = .identity
-        duration = 0.3
-        alphaTo = 1
+        switch isShow {
+        case true:
+            self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            transformTo = .identity
+            duration = 0.3
+            alphaTo = 1
+        case false:
+            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            transformTo = .identity
+            duration = 0.2
+            alphaTo = 0
+        }
         
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
             self.transform = transformTo
             self.alpha = alphaTo
         }) { _ in
-            
+            guard !isShow else{return}
+            self.removeFromSuperview()
         }
     }
     
